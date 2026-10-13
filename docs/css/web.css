@@ -1,0 +1,124 @@
+/* ============================================================
+   Kashish Beauty Salon — WEBSITE layer (web.css)
+   Loaded only on the website (the app keeps its pure mobile UI).
+   Adds: desktop layout, elegant animations, ladies-first polish.
+   Everything here is additive — style.css stays untouched.
+   ============================================================ */
+
+html{ scroll-behavior:smooth; }
+
+/* ---------- gentle entrance for the whole page ---------- */
+@keyframes webFadeIn{ from{ opacity:0 } to{ opacity:1 } }
+body{ animation:webFadeIn .5s ease both; }
+
+/* ---------- reveal-on-scroll (JS adds .reveal, then .in) ---------- */
+.reveal{ opacity:0; transform:translateY(20px);
+  transition:opacity .7s cubic-bezier(.22,.8,.32,1), transform .7s cubic-bezier(.22,.8,.32,1); }
+.reveal.in{ opacity:1; transform:none; }
+
+/* ---------- hero sparkle & sheen ---------- */
+@keyframes heroSheen{
+  0%{ transform:translateX(-130%) skewX(-18deg) }
+  55%,100%{ transform:translateX(240%) skewX(-18deg) }
+}
+@keyframes floatSparkle{
+  0%,100%{ transform:translateY(0) rotate(0deg); opacity:.25 }
+  50%{ transform:translateY(-14px) rotate(24deg); opacity:.9 }
+}
+.hero{ position:relative; overflow:hidden; }
+.hero::before{
+  content:""; position:absolute; top:0; bottom:0; width:45%;
+  background:linear-gradient(90deg, transparent, rgba(255,236,190,.16), transparent);
+  animation:heroSheen 5.5s ease-in-out infinite; pointer-events:none;
+}
+.hero::after{
+  content:"\2726  \2727  \2726"; position:absolute; top:16px; right:20px;
+  color:rgba(233,207,143,.85); font-size:15px; letter-spacing:10px;
+  animation:floatSparkle 4.5s ease-in-out infinite; pointer-events:none;
+}
+
+/* ---------- offer banner: golden shimmer sweep ---------- */
+@keyframes bannerShine{
+  0%{ background-position:-200% 0 } 100%{ background-position:200% 0 }
+}
+.top-offer{
+  background-image:linear-gradient(110deg, rgba(255,255,255,0) 30%, rgba(255,240,200,.22) 50%, rgba(255,255,255,0) 70%);
+  background-size:200% 100%;
+  animation:bannerShine 3.6s linear infinite;
+}
+
+/* ---------- booking steps: soft pane entrance ---------- */
+@keyframes paneIn{ from{ opacity:0; transform:translateY(14px) } to{ opacity:1; transform:none } }
+.bk-pane{ animation:paneIn .45s ease both; }
+
+/* ---------- buttons & cards: alive but graceful ---------- */
+.btn, .chip, .tab, .book-btn{ transition:transform .18s ease, box-shadow .18s ease, background .18s ease; }
+@media (hover:hover) and (pointer:fine){
+  .btn:hover, .book-btn:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(91,35,51,.22); }
+  .svc, .deal-card, .pop-card, .beaut-card, .offer-slide, .offer-full-card, .gal-tile, .review-card{
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .svc:hover, .deal-card:hover, .pop-card:hover, .beaut-card:hover,
+  .offer-slide:hover, .offer-full-card:hover, .gal-tile:hover, .review-card:hover{
+    transform:translateY(-4px); box-shadow:0 14px 30px rgba(91,35,51,.16);
+  }
+  .tab:hover{ transform:translateY(-2px); }
+}
+
+/* ---------- gold button soft glow pulse ---------- */
+@keyframes goldGlow{
+  0%,100%{ box-shadow:0 6px 18px rgba(201,172,120,.35) }
+  50%{ box-shadow:0 8px 26px rgba(201,172,120,.6) }
+}
+.btn-gold{ animation:goldGlow 2.8s ease-in-out infinite; }
+
+/* ============================================================
+   DESKTOP LAYOUT (laptop / computer browsers)
+   ============================================================ */
+@media (min-width: 900px){
+  body{
+    max-width:1180px;
+    padding:26px 34px 130px;
+    font-size:16px;
+    background:
+      radial-gradient(900px 420px at 108% -60px, rgba(201,172,120,.16), transparent 60%),
+      radial-gradient(760px 380px at -80px 300px, rgba(217,108,133,.12), transparent 60%),
+      var(--rose-soft);
+  }
+  .hero{ border-radius:28px; min-height:330px; padding:44px 48px; }
+  .hero h1, .hero-title{ font-size:2.6rem; }
+  .sec-title{ font-size:1.45rem; }
+  .page-head h2{ font-size:2rem; }
+
+  /* horizontal scrollers become friendly grids */
+  .hscroll{ flex-wrap:wrap; overflow-x:visible; }
+  .pop-card{ flex:1 1 210px; }
+  .beaut-card{ flex:1 1 170px; }
+  .offer-slide{ flex:1 1 330px; }
+
+  /* services: two elegant columns */
+  #svcList{ display:grid; grid-template-columns:1fr 1fr; gap:14px; align-items:start; }
+  #svcList .svc-cat{ grid-column:1 / -1; }
+
+  /* gallery breathes */
+  .gal-grid{ grid-template-columns:repeat(4, 1fr) !important; gap:14px; }
+
+  /* forms & owner panel get room */
+  .form-group input, .form-group select, .form-group textarea{ font-size:1rem; }
+  .modal-box{ max-width:560px; }
+
+  /* tabbar becomes a wide floating dock */
+  #tabbar{ width:auto; min-width:560px; padding:10px 22px; }
+}
+
+@media (min-width: 1300px){
+  #svcList{ grid-template-columns:1fr 1fr 1fr; }
+  .gal-grid{ grid-template-columns:repeat(5, 1fr) !important; }
+}
+
+/* ---------- respect users who dislike motion ---------- */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+  .reveal{ opacity:1; transform:none; }
+  html{ scroll-behavior:auto; }
+}
