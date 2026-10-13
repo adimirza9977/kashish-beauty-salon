@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kashish Beauty Salon — Sahiwal | Online Booking, Offers & Deals</title>
+<meta name="description" content="Kashish Beauty Salon, Garden Town Sahiwal — book facials, bridal makeup, hair styling & more online. Live offers, package deals, top-rated beauticians and loyalty points.">
+<meta name="theme-color" content="#5b2333">
+<link rel="icon" type="image/png" href="img/logo.png">
+<meta property="og:title" content="Kashish Beauty Salon — Sahiwal">
+<meta property="og:description" content="Book your appointment online — offers, package deals & loyalty points.">
+<meta property="og:image" content="img/hero.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/web.css">
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-inner">
+    <img class="splash-logo-img" src="img/logo.png" alt="Kashish">
+    <h1>Kashish</h1>
+    <p>BEAUTY SALON</p>
+    <p class="splash-tag">Your Beauty, Our Passion</p>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header id="topbar">
+  <div class="brand">
+    <img class="brand-mark-img" src="img/logo.png" alt="Kashish">
+    <div class="brand-text">
+      <strong>Kashish</strong>
+      <span>Beauty Salon &bull; Sahiwal</span>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button class="owner-btn" id="ownerBtn" title="Owner panel">&#128274;</button>
+    <a class="call-btn" href="tel:+923127830765" id="callBtn">&#9742;</a>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- ============ HOME ============ -->
+  <section class="page active" id="page-home">
+    <div class="update-banner" id="updateBanner" style="display:none">
+      <span class="up-ico">&#11088;</span>
+      <span class="up-text" id="updateText">A new version of the app is available!</span>
+      <a class="up-btn" id="updateBtn" href="#" target="_blank">Update</a>
+      <button class="up-x" id="updateDismiss" aria-label="Dismiss">&times;</button>
+    </div>
+    <div class="top-offer" id="topOffer" style="display:none" role="button" aria-label="View offer">
+      <div class="to-sparkles" id="toSparkles"></div>
+      <div class="to-shine"></div>
+      <div class="to-crown">&#128081;</div>
+      <div class="to-body">
+        <div class="to-eyebrow">Limited Time Offer</div>
+        <div class="to-percent" id="toPercent">20% OFF</div>
+        <div class="to-title" id="toTitle">Special Deal</div>
+        <div class="to-valid" id="toValid"></div>
+      </div>
+      <div class="to-tap">Tap for details</div>
+    </div>
+    <div class="top-offer" id="topSvcOffer" style="display:none" role="button" aria-label="View discounted services">
+      <div class="to-sparkles" id="toSvcSparkles"></div>
+      <div class="to-shine"></div>
+      <div class="to-crown">&#127873;</div>
+      <div class="to-body">
+        <div class="to-eyebrow" id="toSvcEyebrow">Services on Sale</div>
+        <div class="to-percent" id="toSvcPercent">20% OFF</div>
+        <div class="to-title" id="toSvcTitle"></div>
+        <div class="to-svclist" id="toSvcList"></div>
+      </div>
+      <div class="to-tap">Tap to see all</div>
+    </div>
+    <div class="home-greet"><h2>Welcome to Kashish</h2><p>Your beauty, our passion</p></div>
+    <div class="hero">
+      <img src="img/hero.jpg" alt="Kashish Beauty Salon" onerror="this.style.display='none'">
+      <div class="hero-overlay"></div>
+      <div class="hero-text">
+        <p class="hero-kicker">Kashish Beauty Salon &bull; Sahiwal</p>
+        <h2>Look Beautiful,<br>Feel Confident</h2>
+        <p class="hero-sub">Bridal makeup, hair styling, facials &amp; more — by expert beauticians.</p>
+        <div class="hero-cta">
+          <a class="btn btn-gold" href="#" data-goto="booking">Book Appointment</a>
+          <a class="btn btn-outline" href="#" data-goto="services">View Services</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h3 class="sec-title">Popular Services</h3>
+      <div class="chips" id="homeCats"></div>
+    </div>
+
+    <div class="section">
+      <span class="eyebrow">Most Loved</span>
+      <h3 class="sec-title">Popular Services</h3>
+      <div class="hscroll" id="popularRow"></div>
+    </div>
+
+    <div class="section" id="recoSection" style="display:none">
+      <span class="eyebrow">Just For You</span>
+      <h3 class="sec-title">Recommended For You</h3>
+      <div class="hscroll" id="recoRow"></div>
+    </div>
+
+    <div class="section" id="offersSection" style="display:none">
+      <span class="eyebrow">Limited Time</span>
+      <h3 class="sec-title">Today's Offers</h3>
+      <div class="hscroll" id="offersList"></div>
+    </div>
+
+    <div class="section" id="homeDealsSection" style="display:none">
+      <span class="eyebrow">Save More</span>
+      <h3 class="sec-title">&#127873; Package Deals</h3>
+      <div id="homeDeals"></div>
+    </div>
+
+    <div class="section" id="topBeautSection" style="display:none">
+      <span class="eyebrow">Our Team</span>
+      <h3 class="sec-title">Top Beauticians</h3>
+      <div class="hscroll" id="topBeautRow"></div>
+      <p class="beaut-note">Ranked by bookings — our most-loved beauticians first. Tap a card to book with her.</p>
+    </div>
+
+    <div id="upcomingCard" class="upcoming-card" style="display:none"></div>
+
+    <div class="about-card">
+      <h3>About Kashish</h3>
+      <p>Sahiwal's trusted destination for ladies' beauty care — from signature bridal makeup to everyday glow treatments. Hygienic, professional, and affordable.</p>
+      <div class="about-stats">
+        <div><strong>100%</strong><span>Hygienic</span></div>
+        <div><strong>Expert</strong><span>Beauticians</span></div>
+        <div><strong>Rs</strong><span>Fair Prices</span></div>
+      </div>
+    </div>
+
+    <div class="section" id="shareAppSection">
+      <span class="eyebrow">Share With Friends</span>
+      <h3 class="sec-title">Download App</h3>
+      <div class="share-card">
+        <div class="qr-wrap" id="qrBox"><div id="qrCode"></div></div>
+        <p class="qr-hint">Scan this QR code to download the Kashish app</p>
+        <p class="qr-link" id="qrLinkText"></p>
+        <div class="qr-btns">
+          <button class="btn btn-outline" id="qrCopyBtn">Copy Link</button>
+          <a class="btn btn-wa" id="qrWaBtn" href="#" target="_blank">WhatsApp</a>
+        </div>
+        <a class="btn btn-gold btn-block" id="openAppBtn" href="#" style="display:none;margin-top:12px">&#128241; Open in App</a>
+        <p class="qr-hint" id="openAppHint" style="display:none">App installed hai? Ek tap mein wahi khul jayegi.</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-head">
+        <div><span class="eyebrow">Find Us</span><h3 class="sec-title">Visit Us</h3></div>
+        <a href="#" data-goto="contact" class="link">Details &rsaquo;</a>
+      </div>
+      <div class="visit-card">
+        <p class="visit-line"><strong>Address</strong><span>Garden Town, Street No. 1, House No. 127/B, Sahiwal</span></p>
+        <p class="visit-line"><strong>Timings</strong><span>Mon – Sun &nbsp; 10:00 AM – 9:00 PM</span></p>
+        <div class="visit-btns">
+          <a class="btn btn-outline" href="tel:+923127830765">Call</a>
+          <a class="btn btn-wa" id="homeWaBtn" href="#" target="_blank">WhatsApp</a>
+          <a class="btn btn-outline" href="https://www.instagram.com/kashish_salon_sahiwal" target="_blank">Instagram</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="sec-head">
+        <div><span class="eyebrow">Our Work</span><h3 class="sec-title">Gallery</h3></div>
+        <a href="#" data-goto="gallery" class="link">See all &rsaquo;</a>
+      </div>
+      <div class="gal-preview" id="galPreview"></div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="page" id="page-services">
+    <div class="page-head">
+      <span class="eyebrow">Our Menu</span>
+      <h2>Our Services</h2>
+      <p>All prices in Pakistani Rupees — tap Book to reserve</p>
+    </div>
+    <div class="search-wrap">
+      <input type="search" id="svcSearch" placeholder="Search services... (e.g. facial)">
+    </div>
+    <button id="svcOffersBtn" class="offers-btn" style="display:none">&#127991; View Offers <span id="svcOffersCount" class="offers-count"></span></button>
+    <button id="svcDealsBtn" class="offers-btn deals-btn" style="display:none">&#127873; View Package Deals <span id="svcDealsCount" class="offers-count"></span></button>
+    <div id="dealsBox" style="display:none">
+      <div class="svc-cat">&#127873; Package Deals</div>
+      <div id="dealsList"></div>
+    </div>
+    <div class="cat-tabs" id="catTabs"></div>
+    <div id="svcList"></div>
+    <div class="note-card">
+      <p>&#9432; Prices may vary slightly by hair length &amp; skin type. Free cancellation up to 24 hours before your appointment.</p>
+    </div>
+  </section>
+
+  <!-- ============ DEALS (v6.0) ============ -->
+  <section class="page" id="page-deals">
+    <div class="sdet-top"><a href="#" class="back-link" id="dealsBack">&lsaquo; Back to services</a></div>
+    <div class="page-head">
+      <span class="eyebrow">Best Value</span>
+      <h2>&#127873; Package Deals</h2>
+      <p>Sab kuch ek package mein — tap a deal to see what is included and book</p>
+    </div>
+    <div id="dealsPageList"></div>
+  </section>
+
+  <!-- ============ OFFERS (v6.0) ============ -->
+  <section class="page" id="page-offers">
+    <div class="sdet-top"><a href="#" class="back-link" id="offersBack">&lsaquo; Back to services</a></div>
+    <div class="page-head">
+      <span class="eyebrow">Save More</span>
+      <h2>&#127873; Current Offers</h2>
+      <p>All running offers in one place — tap an offer for details</p>
+    </div>
+    <div id="offersPageList"></div>
+  </section>
+
+  <!-- ============ SERVICE DETAILS (v4) ============ -->
+  <section class="page" id="page-sdetail">
+    <div class="sdet-top"><a href="#" class="back-link" id="sdetBack">&lsaquo; Back to services</a></div>
+    <div id="sdetBody"></div>
+  </section>
+
+  <!-- ============ BOOKING ============ -->
+  <section class="page" id="page-booking">
+    <div class="page-head">
+      <span class="eyebrow">Reserve</span>
+      <h2>Book Appointment</h2>
+      <p>Reserve your slot in 4 easy steps</p>
+    </div>
+
+    <div class="bk-steps" id="bkSteps">
+      <div class="bk-step active" data-s="1"><span>1</span>Service</div>
+      <div class="bk-step" data-s="2"><span>2</span>Time</div>
+      <div class="bk-step" data-s="3"><span>3</span>Details</div>
+      <div class="bk-step" data-s="4"><span>4</span>Confirm</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="bk-pane" id="bkPane1">
+      <div class="form-group">
+        <label>Choose a service</label>
+        <select id="bkService"></select>
+      </div>
+      <div class="form-group">
+        <label>Choose a date</label>
+        <input type="date" id="bkDate">
+      </div>
+      <div class="form-group">
+        <label>Beautician</label>
+        <div class="chips" id="bkBeautChips"></div>
+      </div>
+      <button class="btn btn-gold btn-block" id="bkToStep2">See Time Slots &rsaquo;</button>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="bk-pane" id="bkPane2" style="display:none">
+      <p class="bk-summary" id="bkSlotSummary"></p>
+      <div class="slot-grid" id="slotGrid"></div>
+      <div class="note-card"><p>&#9432; Greyed slots are already booked. Your slot is reserved the moment you confirm.</p></div>
+      <a href="#" class="back-link" data-bkback="1">&lsaquo; Back</a>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="bk-pane" id="bkPane3" style="display:none">
+      <div class="bk-summary" id="bkAsUser" style="display:none"></div>
+      <div class="form-group" id="bkNameWrap">
+        <label>Your name</label>
+        <input type="text" id="bkName" placeholder="e.g. Ayesha Khan" autocomplete="name">
+      </div>
+      <div class="form-group" id="bkPhoneWrap">
+        <label>Mobile number</label>
+        <input type="tel" id="bkPhone" placeholder="03XXXXXXXXX" inputmode="numeric" autocomplete="tel">
+      </div>
+      <div class="form-group">
+        <label>Payment method</label>
+        <div class="pay-methods" id="payMethods">
+          <div class="pay-card selected" data-pay="cash"><span class="pay-name">&#128176; Cash</span><small>Pay at salon</small></div>
+          <div class="pay-card" data-pay="easypaisa"><span class="pay-name">Easypaisa</span><small>Transfer + TID</small></div>
+          <div class="pay-card" data-pay="jazzcash"><span class="pay-name">JazzCash</span><small>Transfer + TID</small></div>
+          <div class="pay-card" data-pay="bank"><span class="pay-name">&#127974; Bank</span><small>Transfer + TID</small></div>
+        </div>
+      </div>
+      <div id="payExtra" style="display:none">
+        <div class="bill-card">
+          <div class="bill-row"><span id="payAccLabel">Account</span><strong id="payAccNum">-</strong></div>
+          <div class="bill-row" id="payAccTitleRow"><span>Title</span><strong id="payAccTitle">-</strong></div>
+          <button class="btn btn-outline btn-block" id="payCopyBtn">Copy Account Number</button>
+          <ol class="pay-steps">
+            <li>Send the total amount to the account above</li>
+            <li>Enter the Transaction ID (TID) below</li>
+          </ol>
+        </div>
+        <div class="form-group">
+          <label>Transaction ID (TID)</label>
+          <input type="text" id="bkTid" placeholder="e.g. 34567890123">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Coupon code (optional)</label>
+        <div class="coupon-row">
+          <input type="text" id="bkCoupon" placeholder="e.g. GLOW20" autocomplete="off">
+          <button class="btn btn-outline" id="bkCouponApply" type="button">Apply</button>
+        </div>
+        <p class="coupon-msg" id="bkCouponMsg"></p>
+      </div>
+      <div class="bill-card" id="redeemCard" style="display:none">
+        <div class="bill-row"><span>Your loyalty points</span><strong id="redeemPts">0</strong></div>
+        <div class="bill-row"><span>Use points for discount?</span><input type="checkbox" id="redeemChk"></div>
+        <small id="redeemHint"></small>
+      </div>
+      <div class="form-group">
+        <label>Notes (optional)</label>
+        <textarea id="bkNotes" rows="2" placeholder="Anything we should know?"></textarea>
+      </div>
+      <button class="btn btn-gold btn-block" id="bkToStep4">Review Booking &rsaquo;</button>
+      <a href="#" class="back-link" data-bkback="2">&lsaquo; Back</a>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="bk-pane" id="bkPane4" style="display:none">
+      <div class="bill-card" id="billCard"></div>
+      <div class="note-card"><p>&#9432; Free cancellation up to 24 hours before. Please arrive 10 minutes early.</p></div>
+      <button class="btn btn-gold btn-block" id="bkConfirm">Confirm Booking</button>
+      <a href="#" class="back-link" data-bkback="3">&lsaquo; Back</a>
+    </div>
+
+    <!-- SUCCESS / CONFIRMATION (v4) -->
+    <div class="bk-pane" id="bkPaneDone" style="display:none">
+      <div class="confirm-card">
+        <div class="confirm-check">&#10003;</div>
+        <h3>Booking Confirmed!</h3>
+        <p class="muted">Please show this reference at the salon</p>
+        <div class="ref-big" id="doneRef">KBS-XXXXXX</div>
+        <div class="bill-card" id="doneDetails" style="text-align:left"></div>
+        <a class="btn btn-gold btn-block" id="doneView" href="#">View My Bookings</a>
+        <a class="btn btn-wa btn-block" id="doneWa" href="#" target="_blank">Contact Salon on WhatsApp</a>
+        <a class="btn btn-outline btn-block" id="doneCal" href="#" target="_blank">Add to Calendar</a>
+        <button class="btn btn-outline btn-block" id="doneNew">Book Another</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ LOYALTY ============ -->
+  <section class="page" id="page-loyalty">
+    <div class="page-head">
+      <span class="eyebrow">Rewards</span>
+      <h2>Loyalty Points</h2>
+      <p>Earn on every visit, save on the next</p>
+    </div>
+    <div class="loyal-card">
+      <p>Check your points</p>
+      <div class="form-group">
+        <input type="tel" id="loyalPhone" placeholder="03XXXXXXXXX" inputmode="numeric">
+      </div>
+      <button class="btn btn-gold btn-block" id="loyalCheck">Check Points</button>
+      <div class="loyal-points" id="loyalResult" style="display:none">
+        <span>Your balance</span>
+        <strong id="loyalPts">0</strong>
+        <span>points</span>
+      </div>
+    </div>
+    <div class="section">
+      <h3 class="sec-title">How it works</h3>
+      <ul class="loyal-rules" id="loyalRules"></ul>
+    </div>
+  </section>
+
+  <!-- ============ OWNER ============ -->
+  <section class="page" id="page-owner">
+    <div class="page-head">
+      <span class="eyebrow">Private</span>
+      <h2>Salon Owner</h2>
+      <p>Private — bookings &amp; settings</p>
+    </div>
+    <div id="ownerLogin">
+      <div class="owner-login">
+        <p>Enter owner PIN</p>
+        <div class="pin-display" id="pinDisplay">&bull;&bull;&bull;&bull;</div>
+        <div class="pin-pad" id="pinPad">
+          <button class="pin-key">1</button><button class="pin-key">2</button><button class="pin-key">3</button>
+          <button class="pin-key">4</button><button class="pin-key">5</button><button class="pin-key">6</button>
+          <button class="pin-key">7</button><button class="pin-key">8</button><button class="pin-key">9</button>
+          <button class="pin-key" data-k="clear">C</button><button class="pin-key">0</button><button class="pin-key" data-k="ok">&#10003;</button>
+        </div>
+        <p style="margin-top:12px"><a href="#" id="forgotPinLink" style="font-size:.85rem">Forgot PIN?</a></p>
+      </div>
+    </div>
+    <div id="ownerPanel" style="display:none">
+      <div class="owner-topbar">
+        <span class="owner-badge">Owner Mode</span>
+        <button class="mini-btn" id="ownerLockTop">Lock Panel</button>
+      </div>
+      <div class="owner-tabs" id="ownerTabs">
+        <button class="otab active" data-ot="dashboard">Dashboard</button>
+        <button class="otab" data-ot="bookings">Bookings</button>
+        <button class="otab" data-ot="customers">Customers</button>
+        <button class="otab" data-ot="services">Services</button>
+        <button class="otab" data-ot="offers">Offers</button>
+        <button class="otab" data-ot="deals">Deals</button>
+        <button class="otab" data-ot="beauticians">Beauticians</button>
+        <button class="otab" data-ot="gallery">Gallery</button>
+        <button class="otab" data-ot="resets">Resets</button>
+        <button class="otab" data-ot="payments">Payments</button>
+        <button class="otab" data-ot="settings">Settings</button>
+      </div>
+      <div id="otPane-dashboard">
+        <div class="dash-grid">
+          <div class="dash-card"><strong id="dashToday">0</strong><span>Today's Bookings</span></div>
+          <div class="dash-card"><strong id="dashRevenue">Rs 0</strong><span>Today's Revenue</span></div>
+          <div class="dash-card"><strong id="dashPending">0</strong><span>Pending Confirmations</span></div>
+          <div class="dash-card"><strong id="dashUpcoming">0</strong><span>Upcoming Appointments</span></div>
+        </div>
+        <div class="alert-line" id="dashAlerts" style="display:none"></div>
+        <h3 class="sec-title">Quick Actions</h3>
+        <div class="dash-actions">
+          <button class="btn btn-gold" id="dashWalkin">New Walk-in Booking</button>
+          <button class="btn btn-outline" id="dashAddSvc">Add Service</button>
+          <button class="btn btn-outline" id="dashAddOffer">Add Offer</button>
+        </div>
+        <div id="walkinForm" style="display:none" class="mgr-form">
+          <h3 class="sec-title">New Walk-in Booking</h3>
+          <div class="form-group"><label>Service name</label><input type="text" id="wiService" placeholder="e.g. Bridal Makeup"></div>
+          <div class="form-group"><label>Price (Rs)</label><input type="number" id="wiPrice" placeholder="e.g. 5000" min="0" inputmode="numeric"></div>
+          <div class="form-group"><label>Beautician</label><select id="wiBeaut"></select></div>
+          <div class="form-group"><label>Date</label><input type="date" id="wiDate"></div>
+          <div class="form-group"><label>Time slot</label><select id="wiSlot"></select></div>
+          <div class="form-group"><label>Customer name</label><input type="text" id="wiName" placeholder="e.g. Ayesha Khan"></div>
+          <div class="form-group"><label>Customer phone</label><input type="tel" id="wiPhone" placeholder="03XXXXXXXXX" inputmode="numeric"></div>
+          <button class="btn btn-gold btn-block" id="wiSave">Create Booking</button>
+          <button class="btn btn-outline btn-block" id="wiCancel">Cancel</button>
+        </div>
+      </div>
+      <div id="otPane-bookings">
+        <div class="bk-filter">
+          <button class="mini-btn fbtn active" data-bf="upcoming">Upcoming</button>
+          <button class="mini-btn fbtn" data-bf="all">All</button>
+          <input type="date" id="ownerDate" class="date-inline">
+        </div>
+        <div id="ownerBookings"></div>
+      </div>
+      <div id="otPane-customers" style="display:none">
+        <div class="search-wrap" style="padding:0 0 10px"><input type="search" id="custSearch" placeholder="Search customers..."></div>
+        <div id="ownerCustomers"></div>
+      </div>
+      <div id="otPane-services" style="display:none">
+        <button class="btn btn-gold btn-block" id="svcAddBtn">+ Add New Service</button>
+        <div id="svcForm" style="display:none" class="mgr-form">
+          <h3 class="sec-title" id="svcFormTitle">Add Service</h3>
+          <div class="form-group"><label>Service name</label><input type="text" id="svcFName" placeholder="e.g. Party Makeup"></div>
+          <div class="form-group"><label>Category</label><select id="svcFCat"></select></div>
+          <div class="form-group"><label>Price (Rs)</label><input type="number" id="svcFPrice" min="0" placeholder="5000"></div>
+          <div class="form-group"><label>Discount % off (0 = none, max 90)</label><input type="number" id="svcFDisc" min="0" max="90" placeholder="e.g. 20"></div>
+          <div class="form-group"><label>Duration (minutes)</label><input type="number" id="svcFDur" min="5" value="30"></div>
+          <div class="form-group"><label>Description</label><input type="text" id="svcFDesc" placeholder="Short description"></div>
+          <div class="form-group"><label>Picture</label>
+            <div class="img-pick"><img id="svcFImgPrev" class="img-prev" alt=""><input type="file" id="svcFImg" accept="image/*"></div>
+          </div>
+          <div class="form-group" id="svcImgsBox" style="display:none">
+            <label>More Pictures (customer ko service kholne par dikhengi)</label>
+            <div class="gal-grid" id="svcImgsGrid" style="margin-bottom:8px"></div>
+            <input type="file" id="svcImgsFile" accept="image/*" multiple>
+            <button class="btn btn-outline btn-block" id="svcImgsAddBtn" type="button" style="margin-top:8px">Add Selected Pictures</button>
+          </div>
+          <button class="btn btn-gold btn-block" id="svcFSave">Save Service</button>
+          <button class="btn btn-outline btn-block" id="svcFCancel">Cancel</button>
+        </div>
+        <div id="ownerServices"></div>
+      </div>
+      <div id="otPane-gallery" style="display:none">
+        <div class="mgr-form">
+          <h3 class="sec-title">&#128247; Add Pictures</h3>
+          <div class="form-group"><label>Folder</label><select id="galCatSelImg"></select></div>
+          <div class="form-group"><label>New folder name</label>
+            <div style="display:flex;gap:8px">
+              <input type="text" id="galNewCatImg" placeholder="e.g. Bridal, Facial, Mani-Pedi" style="flex:1">
+              <button class="btn btn-outline" id="galCatAddBtnImg" type="button">Create Folder</button>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-block" id="galCatDelBtnImg" type="button" style="border-color:#c0392b;color:#c0392b">Delete Selected Folder</button>
+          <div class="form-group"><label>Pictures (kai ek saath select kar sakte hain)</label><input type="file" id="galFileImg" accept="image/*" multiple></div>
+          <div class="form-group"><label>Caption (optional)</label><input type="text" id="galCapImg" placeholder="e.g. Bridal makeup"></div>
+          <button class="btn btn-gold btn-block" id="galUploadBtnImg">Upload Pictures</button>
+          <p class="muted" style="margin-top:8px">Koi bhi format chalegi — photo khud sahi JPG ban kar upload hogi aur customer ko show hogi.</p>
+        </div>
+        <div class="mgr-form">
+          <h3 class="sec-title">&#127916; Add Videos</h3>
+          <div class="form-group"><label>Folder</label><select id="galCatSelVid"></select></div>
+          <div class="form-group"><label>New folder name</label>
+            <div style="display:flex;gap:8px">
+              <input type="text" id="galNewCatVid" placeholder="e.g. Bridal, Facial, Mani-Pedi" style="flex:1">
+              <button class="btn btn-outline" id="galCatAddBtnVid" type="button">Create Folder</button>
+            </div>
+          </div>
+          <button class="btn btn-outline btn-block" id="galCatDelBtnVid" type="button" style="border-color:#c0392b;color:#c0392b">Delete Selected Folder</button>
+          <div class="form-group"><label>Videos (kai ek saath select kar sakte hain)</label><input type="file" id="galFileVid" accept="video/*" multiple></div>
+          <div class="form-group"><label>Caption (optional)</label><input type="text" id="galCapVid" placeholder="e.g. Bridal makeup video"></div>
+          <button class="btn btn-gold btn-block" id="galUploadBtnVid">Upload Videos</button>
+          <p class="muted" style="margin-top:8px">Video apne asal format mein jayegi (MP4/MOV waghera). Ek video 50MB se chhoti rakhein.</p>
+        </div>
+        <div id="ownerGallery"></div>
+      </div>
+      <div id="otPane-offers" style="display:none">
+        <div class="mgr-subtabs">
+          <button class="cat-tab active" data-osub="offers">Offers</button>
+          <button class="cat-tab" data-osub="coupons">Coupons</button>
+        </div>
+        <div id="osub-offers">
+          <button class="btn btn-gold btn-block" id="offerAddBtn">+ Add New Offer</button>
+          <div id="offerForm" style="display:none" class="mgr-form">
+            <h3 class="sec-title" id="offerFormTitle">Add Offer</h3>
+            <div class="form-group"><label>Title</label><input type="text" id="offerFTitle" placeholder="e.g. Winter Glow Deal"></div>
+            <div class="form-group"><label>Description</label><textarea id="offerFDesc" rows="2" placeholder="Offer details"></textarea></div>
+            <div class="form-group"><label>Picture</label>
+              <div class="img-pick"><img id="offerFImgPrev" class="img-prev" alt=""><input type="file" id="offerFImg" accept="image/*"></div>
+            </div>
+            <div class="form-group"><label>Discount text (e.g. 20% OFF)</label><input type="text" id="offerFDisc" placeholder="20% OFF"></div>
+            <div class="form-group"><label>Valid till</label><input type="date" id="offerFValid"></div>
+            <div class="form-group"><label>Terms &amp; conditions</label><textarea id="offerFTerms" rows="2" placeholder="e.g. Valid on weekdays only"></textarea></div>
+            <button class="btn btn-gold btn-block" id="offerFSave">Save Offer</button>
+            <button class="btn btn-outline btn-block" id="offerFCancel">Cancel</button>
+          </div>
+          <div id="ownerOffers"></div>
+        </div>
+        <div id="osub-coupons" style="display:none">
+          <button class="btn btn-gold btn-block" id="couponAddBtn">+ Add New Coupon</button>
+          <div id="couponForm" style="display:none" class="mgr-form">
+            <h3 class="sec-title" id="couponFormTitle">Add Coupon</h3>
+            <div class="form-group"><label>Code (auto UPPERCASE)</label><input type="text" id="couponFCode" placeholder="e.g. GLOW20" style="text-transform:uppercase"></div>
+            <div class="form-group"><label>Discount percent (or Rs below)</label><input type="number" id="couponFPct" min="0" max="100" placeholder="e.g. 20"></div>
+            <div class="form-group"><label>Discount Rs (or percent above)</label><input type="number" id="couponFRs" min="0" placeholder="e.g. 500"></div>
+            <div class="form-group"><label>Minimum order (Rs)</label><input type="number" id="couponFMin" min="0" value="0"></div>
+            <div class="form-group"><label>Valid till</label><input type="date" id="couponFValid"></div>
+            <button class="btn btn-gold btn-block" id="couponFSave">Save Coupon</button>
+            <button class="btn btn-outline btn-block" id="couponFCancel">Cancel</button>
+          </div>
+          <div id="ownerCoupons"></div>
+        </div>
+      </div>
+      <div id="otPane-deals" style="display:none">
+        <button class="btn btn-gold btn-block" id="dealAddBtn">+ Add New Deal</button>
+        <div id="dealForm" style="display:none" class="mgr-form">
+          <h3 class="sec-title" id="dealFormTitle">Add Deal</h3>
+          <div class="form-group"><label>Deal name</label><input type="text" id="dealFName" placeholder="e.g. Eid Glow Package"></div>
+          <div class="form-group"><label>Price (Rs)</label><input type="number" id="dealFPrice" min="0" placeholder="e.g. 9999"></div>
+          <div class="form-group"><label>Duration (minutes)</label><input type="number" id="dealFDur" min="5" value="120"></div>
+          <div class="form-group"><label>Is deal mein kya kya shamil hai (description)</label><textarea id="dealFDesc" rows="4" placeholder="e.g. Facial + Haircut + Manicure + Pedicure + Eyebrows — sab kuchh likhein, customer yahi parhega"></textarea></div>
+          <div class="form-group"><label>Deal picture</label>
+            <div class="img-pick"><img id="dealFImgPrev" class="img-prev" alt=""><input type="file" id="dealFImg" accept="image/*"></div>
+          </div>
+          <button class="btn btn-gold btn-block" id="dealFSave">Save Deal</button>
+          <button class="btn btn-outline btn-block" id="dealFCancel">Cancel</button>
+        </div>
+        <div id="ownerDeals"></div>
+      </div>
+      <div id="otPane-beauticians" style="display:none">
+        <div class="week-board">
+          <h3 class="sec-title">&#127942; Weekly Ranking</h3>
+          <p class="week-board-sub">Last 7 days ki bookings par — is week kaun sab se aage hai</p>
+          <div id="weekBoard"><p>Loading...</p></div>
+        </div>
+        <button class="btn btn-gold btn-block" id="beautAddBtn">+ Add Beautician</button>
+        <div id="beautForm" style="display:none" class="mgr-form">
+          <h3 class="sec-title" id="beautFormTitle">Add Beautician</h3>
+          <div class="form-group"><label>Name</label><input type="text" id="beautFName" placeholder="e.g. Kashish"></div>
+          <div class="form-group"><label>Specialty</label><input type="text" id="beautFSpec" placeholder="e.g. Bridal Makeup"></div>
+          <div class="form-group"><label>Phone</label><input type="tel" id="beautFPhone" placeholder="03XXXXXXXXX" inputmode="numeric"></div>
+          <button class="btn btn-gold btn-block" id="beautFSave">Save</button>
+          <button class="btn btn-outline btn-block" id="beautFCancel">Cancel</button>
+        </div>
+        <div id="ownerBeauts"></div>
+      </div>
+      <div id="otPane-payments" style="display:none"><div id="ownerPayments"></div></div>
+      <div id="otPane-resets" style="display:none">
+        <p class="muted" style="margin-bottom:10px">Password reset requests — tap "Send Code" to WhatsApp the code to the customer.</p>
+        <div id="ownerResets"></div>
+      </div>
+      <div id="otPane-settings" style="display:none">
+        <h3 class="sec-title">Loyalty settings</h3>
+        <div class="set-row"><label>Points per Rs.100</label><input type="number" id="setPp100" min="1"></div>
+        <div class="set-row"><label>Redeem: points needed</label><input type="number" id="setRedeemPts" min="1"></div>
+        <div class="set-row"><label>Redeem value (Rs)</label><input type="number" id="setRedeemRs" min="1"></div>
+        <div class="set-row"><label>Min points to redeem</label><input type="number" id="setMinPts" min="1"></div>
+        <button class="btn btn-gold btn-block" id="setLoyalSave">Save Loyalty Settings</button>
+        <div class="divider"></div>
+        <h3 class="sec-title">Payment accounts</h3>
+        <div class="set-row"><label>Easypaisa — account title (holder name)</label><input type="text" id="setEpT" placeholder="e.g. Kashish Akhtar"></div>
+        <div class="set-row"><label>Easypaisa — account number</label><input type="text" id="setEp" placeholder="0312 7830765"></div>
+        <div class="set-row"><label>JazzCash — account title (holder name)</label><input type="text" id="setJcT" placeholder="e.g. Kashish Akhtar"></div>
+        <div class="set-row"><label>JazzCash — account number</label><input type="text" id="setJc" placeholder="0312 7830765"></div>
+        <div class="set-row"><label>Bank — account title (holder name)</label><input type="text" id="setBankT" placeholder="e.g. Kashish Akhtar"></div>
+        <div class="set-row"><label>Bank — account number / IBAN</label><input type="text" id="setBank" placeholder="PK00..."></div>
+        <button class="btn btn-gold btn-block" id="setPaySave">Save Payment Accounts</button>
+        <div class="divider"></div>
+        <h3 class="sec-title">Instagram</h3>
+        <div class="set-row"><label>Instagram profile link</label><input type="url" id="setInsta" placeholder="https://www.instagram.com/..."></div>
+        <button class="btn btn-gold btn-block" id="setInstaSave">Save Instagram Link</button>
+        <div class="divider"></div>
+        <h3 class="sec-title">App Update Notice</h3>
+        <p class="muted" style="margin-bottom:10px">When a new app version is released, set it here — all users will see an update reminder inside the app.</p>
+        <div class="set-row"><label>Latest version name (e.g. 3.2)</label><input type="text" id="setVerName" placeholder="3.2"></div>
+        <div class="set-row"><label>Latest version code (number, must increase)</label><input type="number" id="setVerCode" min="1" placeholder="6"></div>
+        <div class="set-row"><label>APK download link</label><input type="url" id="setApkUrl" placeholder="https://...apk"></div>
+        <button class="btn btn-gold btn-block" id="setVerSave">Publish Update Notice</button>
+        <div class="divider"></div>
+        <h3 class="sec-title">Push Notifications</h3>
+        <p class="muted" style="margin-bottom:10px">Instant phone notification settings. When you add an offer, a service discount, a new service or publish an update, all app users get a notification automatically.</p>
+        <button class="btn btn-outline btn-block" id="pushTestBtn">Send Test Notification</button>
+        <div class="divider"></div>
+        <h3 class="sec-title">Owner PIN</h3>
+        <div class="set-row"><label>New 4-digit PIN</label><input type="password" id="setPin" maxlength="4" inputmode="numeric"></div>
+        <button class="btn btn-outline btn-block" id="setPinSave">Change PIN</button>
+        <div class="divider"></div>
+        <h3 class="sec-title">PIN Recovery Code</h3>
+        <p class="muted" style="margin-bottom:10px">If you ever forget your PIN, this code lets you set a new one. Write it down somewhere safe — it is shown only once when generated.</p>
+        <div id="recoveryBox">
+          <p class="muted">Checking...</p>
+        </div>
+        <button class="btn btn-outline btn-block" id="recoveryGenBtn">Generate New Recovery Code</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="page" id="page-gallery">
+    <div class="page-head">
+      <span class="eyebrow">Portfolio</span>
+      <h2>Gallery</h2>
+      <p>Our recent work</p>
+    </div>
+    <div class="cat-tabs" id="galTabs"></div>
+    <div class="gal-grid" id="galGrid"></div>
+    <a class="btn btn-gold btn-block" id="instaBtn" href="https://www.instagram.com/kashish_salon_sahiwal" target="_blank">Follow us on Instagram</a>
+  </section>
+
+  <!-- ============ PROFILE (v3) ============ -->
+  <section class="page" id="page-profile">
+    <div class="page-head">
+      <span class="eyebrow">Account</span>
+      <h2>My Profile</h2>
+      <p>Your account &amp; bookings</p>
+    </div>
+    <div id="profileLoggedOut">
+      <div class="auth-card">
+        <h3 class="sec-title">Login</h3>
+        <div class="form-group"><label>Phone number</label><input type="tel" id="loginPhone" placeholder="0312 7830765" inputmode="tel"></div>
+        <div class="form-group"><label>Password</label><input type="password" id="loginPass" placeholder="Your password"></div>
+        <button class="btn btn-gold btn-block" id="loginBtn">Login</button>
+        <p class="auth-switch"><a href="#" id="gotoForgot" class="link">Forgot password?</a></p>
+        <p class="auth-switch">New here? <a href="#" id="gotoSignup" class="link">Create an account</a></p>
+      </div>
+    </div>
+    <div id="profileLoggedIn" style="display:none">
+      <div class="auth-card">
+        <h3 class="sec-title" id="profName">Welcome</h3>
+        <p class="muted" id="profPhone"></p>
+        <p class="muted" id="profEmail" style="display:none"></p>
+        <div class="prof-stats"><div><strong id="profPoints">0</strong><span>Points</span></div><div><strong id="profBookings">0</strong><span>Bookings</span></div></div>
+        <button class="btn btn-outline btn-block" id="editProfileBtn">Edit Profile</button>
+        <button class="btn btn-outline btn-block" id="logoutBtn">Logout</button>
+      </div>
+      <!-- Edit Profile modal -->
+      <div class="modal" id="editProfileModal">
+        <div class="modal-box">
+          <h3 class="sec-title">Edit Profile</h3>
+          <div class="form-group"><label>Full name</label><input type="text" id="epName" placeholder="Your name"></div>
+          <div class="form-group"><label>Email <span class="muted">(optional)</span></label><input type="email" id="epEmail" placeholder="you@example.com" inputmode="email"></div>
+          <div class="form-group"><label>Phone number <span class="muted">(cannot be changed)</span></label><input type="tel" id="epPhone" disabled></div>
+          <button class="btn btn-gold btn-block" id="saveProfileBtn">Save Changes</button>
+          <button class="btn btn-outline btn-block" id="cancelProfileBtn">Cancel</button>
+        </div>
+      </div>
+      <div class="section">
+        <h3 class="sec-title">My Bookings</h3>
+        <div class="prof-tabs" id="profBkTabs">
+          <button class="cat-tab active" data-pt="upcoming">Upcoming</button>
+          <button class="cat-tab" data-pt="completed">Completed</button>
+          <button class="cat-tab" data-pt="cancelled">Cancelled</button>
+        </div>
+        <div id="myBookings"></div>
+      </div>
+      <div class="section" id="favSection" style="display:none">
+        <h3 class="sec-title">My Favorites</h3>
+        <div id="favList"></div>
+      </div>
+      <div class="section">
+        <h3 class="sec-title">Notifications</h3>
+        <div class="set-row toggle-row"><label>Booking reminders via WhatsApp</label><input type="checkbox" id="ntfRemind"></div>
+        <div class="set-row toggle-row"><label>Offers &amp; updates</label><input type="checkbox" id="ntfOffers"></div>
+        <p class="muted">Reminders arrive on WhatsApp. This app does not send push notifications.</p>
+      </div>
+      <div class="section profile-links">
+        <a href="#" class="link" id="privacyLink">Privacy Policy</a>
+        <a href="#" class="link danger-link" id="delAccountLink">Delete My Account</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SIGNUP (v3) ============ -->
+  <section class="page" id="page-signup">
+    <div class="page-head">
+      <span class="eyebrow">Join Us</span>
+      <h2>Create Account</h2>
+      <p>Sign up to book appointments</p>
+    </div>
+    <div class="auth-card">
+      <div class="form-group"><label>Full name</label><input type="text" id="suName" placeholder="Your name"></div>
+      <div class="form-group"><label>Phone number</label><input type="tel" id="suPhone" placeholder="0312 7830765" inputmode="tel"></div>
+      <div class="form-group"><label>Email <span class="muted">(optional)</span></label><input type="email" id="suEmail" placeholder="you@example.com" inputmode="email"></div>
+      <div class="form-group"><label>WhatsApp number</label><input type="tel" id="suWa" placeholder="0312 7830765" inputmode="tel"></div>
+      <div class="form-group"><label>Password</label><input type="password" id="suPass" placeholder="Choose a password"></div>
+      <div class="form-group"><label>Confirm password</label><input type="password" id="suPass2" placeholder="Repeat password"></div>
+      <button class="btn btn-gold btn-block" id="signupBtn">Sign Up</button>
+      <p class="auth-switch">Already have an account? <a href="#" id="gotoLogin" class="link">Login</a></p>
+    </div>
+  </section>
+
+  <!-- ============ FORGOT PASSWORD (v3.1) ============ -->
+  <section class="page" id="page-forgot">
+    <div class="page-head">
+      <span class="eyebrow">Recovery</span>
+      <h2>Forgot Password</h2>
+      <p>We'll send a reset code via the salon</p>
+    </div>
+    <div class="auth-card">
+      <div class="form-group"><label>Registered phone number</label><input type="tel" id="fgPhone" placeholder="0312 7830765" inputmode="tel"></div>
+      <button class="btn btn-gold btn-block" id="fgSendBtn">Get Reset Code</button>
+      <div id="fgDone" style="display:none">
+        <p class="muted" style="margin:12px 0">A 6-digit code was generated (valid 15 min). Tap below to request it from the salon on WhatsApp — the salon will send you the code.</p>
+        <a class="btn btn-wa btn-block" id="fgWaBtn" href="#" target="_blank">Request Code on WhatsApp</a>
+        <button class="btn btn-outline btn-block" id="fgHasCodeBtn">I have the code</button>
+      </div>
+      <p class="auth-switch"><a href="#" id="fgBackLogin" class="link">Back to login</a></p>
+    </div>
+  </section>
+
+  <!-- ============ RESET PASSWORD (v3.1) ============ -->
+  <section class="page" id="page-reset">
+    <div class="page-head">
+      <span class="eyebrow">Security</span>
+      <h2>Reset Password</h2>
+      <p>Enter the code the salon sent you</p>
+    </div>
+    <div class="auth-card">
+      <div class="form-group"><label>6-digit code</label><input type="text" id="rsOtp" placeholder="123456" inputmode="numeric" maxlength="6"></div>
+      <div class="form-group"><label>New password</label><input type="password" id="rsPass" placeholder="New password"></div>
+      <div class="form-group"><label>Confirm new password</label><input type="password" id="rsPass2" placeholder="Repeat new password"></div>
+      <button class="btn btn-gold btn-block" id="rsBtn">Set New Password</button>
+      <p class="auth-switch"><a href="#" id="rsBackLogin" class="link">Back to login</a></p>
+    </div>
+  </section>
+
+  <!-- ============ PRIVACY POLICY (v4) ============ -->
+  <section class="page" id="page-privacy">
+    <div class="page-head">
+      <span class="eyebrow">Trust</span>
+      <h2>Privacy Policy</h2>
+      <p>How we handle your data</p>
+    </div>
+    <div class="auth-card">
+      <p style="margin-bottom:10px"><strong>What we collect.</strong> When you create an account or book an appointment, we collect your name, phone number and WhatsApp number, along with your booking details (service, date, time and payment reference).</p>
+      <p style="margin-bottom:10px"><strong>How we use it.</strong> Your details are used only to manage your bookings, confirm appointments, award loyalty points and send service updates on WhatsApp. We never sell your personal data to anyone.</p>
+      <p style="margin-bottom:10px"><strong>Your control.</strong> You can update your details by contacting the salon, and you can delete your account and personal data at any time from Profile &rsaquo; Delete My Account.</p>
+      <p style="margin-bottom:10px"><strong>Security.</strong> Passwords are stored as one-way encrypted hashes — even the salon cannot read them. Booking data is stored on secure cloud servers.</p>
+      <p><strong>Questions?</strong> Message us on WhatsApp at +92 312 7830765 and we will be happy to help.</p>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="page" id="page-contact">
+    <div class="page-head">
+      <span class="eyebrow">Get In Touch</span>
+      <h2>Visit Us</h2>
+      <p>We'd love to pamper you</p>
+    </div>
+    <div class="contact-card">
+      <div class="c-row"><span class="c-ico">&#9673;</span><div><strong>Address</strong><p id="addrText">Garden Town, Street No. 1, House No. 127/B, Sahiwal</p></div></div>
+      <div class="c-row"><span class="c-ico">&#9719;</span><div><strong>Timings</strong><p>Mon – Sun &nbsp; 10:00 AM – 9:00 PM</p></div></div>
+      <div class="c-row"><span class="c-ico">&#9742;</span><div><strong>Phone / WhatsApp</strong><p id="phoneText">+92 312 7830765</p></div></div>
+    </div>
+    <a class="btn btn-wa btn-block" id="waBtn" href="#" target="_blank">Chat on WhatsApp</a>
+    <a class="btn btn-gold btn-block" id="callBtn2" href="tel:+923127830765">Call Now</a>
+    <a class="btn btn-outline btn-block" id="bookBtnContact" href="#" data-goto="booking">Book Appointment</a>
+    <a class="btn btn-outline btn-block" href="https://www.instagram.com/kashish_salon_sahiwal" target="_blank">Instagram Profile</a>
+    <a class="btn btn-outline btn-block" id="mapBtn" href="https://www.google.com/maps/search/?api=1&query=Garden+Town+Street+1+House+127-B+Sahiwal+Punjab+Pakistan" target="_blank">Open in Google Maps</a>
+    <div class="divider"></div>
+    <p style="text-align:center"><a href="#" class="link" id="ownerLink">Salon owner? Open private panel</a></p>
+  </section>
+
+</main>
+
+<!-- BOTTOM NAV -->
+<nav id="tabbar">
+  <button class="tab active" data-goto="home"><span class="t-ico">&#8962;</span><span>Home</span></button>
+  <button class="tab" data-goto="services"><span class="t-ico">&#10022;</span><span>Services</span></button>
+  <button class="tab" data-goto="booking"><span class="t-ico">&#128197;</span><span>Book</span></button>
+  <button class="tab" data-goto="loyalty"><span class="t-ico">&#11088;</span><span>Points</span></button>
+  <button class="tab" data-goto="profile"><span class="t-ico">&#128100;</span><span>Profile</span></button>
+  <button class="tab" data-goto="contact"><span class="t-ico">&#9742;</span><span>Contact</span></button>
+</nav>
+
+<div class="toast" id="toast"></div>
+<div class="modal" id="modal"><div class="modal-box" id="modalBox"></div></div>
+
+<script src="js/config.js"></script>
+<script src="js/lib/qrcode.js"></script>
+<script src="js/services.js"></script>
+<script src="js/db.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/booking.js"></script>
+<script src="js/owner.js"></script>
+<script src="js/app.js"></script>
+<script src="js/web.js"></script>
+</body>
+</html>
