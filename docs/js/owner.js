@@ -1021,6 +1021,10 @@ var Owner = (function(){
     one(acc, "easypaisa", "setEpT", "setEp");
     one(acc, "jazzcash", "setJcT", "setJc");
     one(acc, "bank", "setBankT", "setBank");
+    el("setBankName").value = (acc.bank && acc.bank.name) || "";
+    el("setExLabel").value = (acc.extra && acc.extra.label) || "";
+    el("setExT").value = (acc.extra && acc.extra.title) || "";
+    el("setEx").value = (acc.extra && acc.extra.number) || "";
     // the server copy is the truth: it survives reinstall and reaches every phone
     DB.getSetting("pay_accounts").then(function(v){
       if (!v) return;
@@ -1030,6 +1034,12 @@ var Owner = (function(){
       one(sv, "easypaisa", "setEpT", "setEp");
       one(sv, "jazzcash", "setJcT", "setJc");
       one(sv, "bank", "setBankT", "setBank");
+      if (sv.bank && sv.bank.name) el("setBankName").value = sv.bank.name;
+      if (sv.extra){
+        el("setExLabel").value = sv.extra.label || "";
+        el("setExT").value = sv.extra.title || "";
+        el("setEx").value = sv.extra.number || "";
+      }
       try{ localStorage.setItem(CFG.PAY_ACCOUNTS_KEY, JSON.stringify(sv)); }catch(e){}
     }).catch(function(){});
     DB.getSetting("instagram_url").then(function(v){
@@ -1085,7 +1095,8 @@ var Owner = (function(){
     var acc = {
       easypaisa: { title: el("setEpT").value.trim(), number: el("setEp").value.trim() },
       jazzcash: { title: el("setJcT").value.trim(), number: el("setJc").value.trim() },
-      bank: { title: el("setBankT").value.trim(), number: el("setBank").value.trim() }
+      bank: { title: el("setBankT").value.trim(), number: el("setBank").value.trim(), name: el("setBankName").value.trim() },
+      extra: { label: el("setExLabel").value.trim(), title: el("setExT").value.trim(), number: el("setEx").value.trim() }
     };
     try{ localStorage.setItem(CFG.PAY_ACCOUNTS_KEY, JSON.stringify(acc)); }catch(e){}
     DB.setSetting("pay_accounts", JSON.stringify(acc)).then(function(){

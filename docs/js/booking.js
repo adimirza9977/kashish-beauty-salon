@@ -279,9 +279,26 @@ var Booking = (function(){
       try { s = JSON.parse(localStorage.getItem(CFG.PAY_ACCOUNTS_KEY) || "{}")[k] || {}; }
       catch(e){ s = {}; }
       if (typeof s === "string") s = { number: s };
-      return { title: s.title || dd.title || "", number: s.number || dd.number || "" };
+      return { title: s.title || dd.title || "", number: s.number || dd.number || "", name: s.name || "", label: s.label || "" };
     }
-    return { easypaisa: one("easypaisa"), jazzcash: one("jazzcash"), bank: one("bank") };
+    return { easypaisa: one("easypaisa"), jazzcash: one("jazzcash"), bank: one("bank"), extra: one("extra") };
+  }
+
+  function allPayNames(){
+    var ex = payAccounts().extra || {};
+    return { cash: "Cash at salon", easypaisa: "Easypaisa", jazzcash: "JazzCash", bank: "Bank transfer", extra: ex.label || "Extra account" };
+  }
+  function payDisplayName(){ return allPayNames()[S.pay] || S.pay; }
+
+  /* the extra account card only shows when the owner has set it up */
+  function applyExtraCard(){
+    var card = el("payCardExtra");
+    if (!card) return;
+    var ex = payAccounts().extra || {};
+    var show = !!(ex.label && ex.number);
+    card.style.display = show ? "" : "none";
+    if (show) el("payExtraName").textContent = ex.label;
+    if (!show && S.pay === "extra") S.pay = "cash";
   }
 
   function initStep3(){
@@ -299,6 +316,7 @@ var Booking = (function(){
       el("bkPhoneWrap").style.display = "";
       asUser.style.display = "none";
     }
+    applyExtraCard();
     // payment cards
     var cards = document.querySelectorAll("#payMethods .pay-card");
     cards.forEach(function(c){
@@ -314,7 +332,7 @@ var Booking = (function(){
     // refresh payment accounts from the server (owner changes reach every
     // phone and survive reinstall/update), then re-render the account box
     if (window.DB && DB.getPaymentAccounts){
-      DB.getPaymentAccounts().then(function(){ syncPayExtra(); }).catch(function(){});
+      DB.getPaymentAccounts().then(function(){ applyExtraCard(); syncPayExtra(); }).catch(function(){});
     }
     maybeLoyalty();
     initCoupon();
@@ -361,8 +379,14 @@ var Booking = (function(){
     el("payExtra").style.display = online ? "" : "none";
     if (online){
       var acc = (payAccounts()[S.pay]) || {};
-      var labels = { easypaisa: "Easypaisa", jazzcash: "JazzCash", bank: "Bank" };
-      el("payAccLabel").textContent = labels[S.pay] || "Account";
+      var bankRow = el("payAccBankRow");
+      if (bankRow){
+        var bn = (S.pay === "bank" && acc.name) ? String(acc.name).toUpperCase() : "";
+        bankRow.style.display = bn ? "" : "none";
+        if (bn) el("payAccBankName").textContent = bn;
+      }
+      var labels = { easypaisa: "Easypaisa", jazzcash: "JazzCash", bank: "Bank", extra: "Extra account" };
+      el("payAccLabel").textContent = (S.pay === "extra" && acc.label) ? acc.label : (labels[S.pay] || "Account");
       el("payAccTitle").textContent = acc.title || "-";
       el("payAccTitleRow").style.display = acc.title ? "" : "none";
       el("payAccNum").textContent = acc.number || "Not set — ask salon on WhatsApp";
@@ -415,7 +439,7 @@ var Booking = (function(){
     var svcDisc = Math.max(0, S.service.price - svcPrice);
     var svcDiscPct = (S.service.discount_percent > 0) ? Math.min(90, S.service.discount_percent) : 0;
     var total = Math.max(0, svcPrice - couponDisc - loyalDisc);
-    var payNames = { cash: "Cash at salon", easypaisa: "Easypaisa", jazzcash: "JazzCash", bank: "Bank transfer" };
+    var payNames = allPayNames();
     var html = "";
     html += '<div class="bill-row"><span>Service</span><strong>' + esc(S.service.name) + '</strong></div>';
     html += '<div class="bill-row"><span>Beautician</span><strong>' + esc(S.beautName) + '</strong></div>';
@@ -463,7 +487,7 @@ var Booking = (function(){
         beautician_id: S.beautId ? S.beautId : null,
         coupon_code: S.coupon ? S.coupon.code : "",
         redeem_points: redeemPts,
-        payment_method: S.pay,
+        payment_method: S.pay === "extra" ? (payAccounts().extra.label || "extra") : S.pay,
         payment_tid: S.pay === "cash" ? "" : el("bkTid").value.trim(),
         notes: el("bkNotes").value.trim()
       };
@@ -489,7 +513,7 @@ var Booking = (function(){
     el("bkPaneDone").style.display = "";
     var ref = b.ref_code || ("KS-" + String(b.id || "").slice(0, 8).toUpperCase());
     el("doneRef").textContent = ref;
-    var payNames = { cash: "Cash at salon", easypaisa: "Easypaisa", jazzcash: "JazzCash", bank: "Bank transfer" };
+    var payNames = allPayNames();
     var payStatus = S.pay === "cash" ? "Pay at salon" : "Proof submitted — salon will verify";
     var html = "";
     html += '<div class="bill-row"><span>Service</span><strong>' + esc(S.service.name) + '</strong></div>';
@@ -510,7 +534,7 @@ var Booking = (function(){
       "Date: " + fmtDate(S.date) + "\n" +
       "Time: " + fmtSlot(S.slot) + "\n" +
       "Total: " + rs(r.total) + "\n" +
-      "Payment: " + S.pay +
+      "Payment: " + payDisplayName() +
       (S.pay !== "cash" ? "\nTID: " + el("bkTid").value.trim() : "");
     el("doneWa").href = "whatsapp://send?phone=" + CFG.SALON.whatsapp + "&text=" + encodeURIComponent(msg);
     /* v6.0: Add to Calendar (Google Calendar template link) */

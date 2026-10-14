@@ -20,8 +20,8 @@ var CFG = {
   DEFAULT_PIN: "1234",               // adeel can change it in Owner > Settings
 
   // App version (for in-app update notices) — bump with every release
-  APP_VERSION: "6.3",
-  APP_VERSION_CODE: 30,
+  APP_VERSION: "6.6",
+  APP_VERSION_CODE: 33,
 
   // Push notification test (Edge Function shared secret)
   PUSH_SECRET: "Nw2njYC5EjElniEh6z4WRKIN6s3qJtCTfxomIK2dU0c",
@@ -32,7 +32,8 @@ var CFG = {
   DEFAULT_PAY_ACCOUNTS: {
     easypaisa: { title: "Kashish Beauty Salon", number: "03112289977" },
     jazzcash: { title: "Kashish Beauty Salon", number: "03112289977" },
-    bank: { title: "Kashish Beauty Salon", number: "012779028703" }
+    bank: { title: "Kashish Beauty Salon", number: "012779028703", name: "" },
+    extra: { label: "", title: "", number: "" }
   },
 
   // Default Instagram (owner can change it in Owner > Settings)

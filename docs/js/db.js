@@ -494,10 +494,12 @@ var DB = (function(){
       var d = (typeof CFG !== "undefined" && CFG.DEFAULT_PAY_ACCOUNTS) || {};
       function build(raw){
         var out = {};
-        ["easypaisa", "jazzcash", "bank"].forEach(function(k){
+        ["easypaisa", "jazzcash", "bank", "extra"].forEach(function(k){
           var dd = d[k] || {}, s = (raw && raw[k]) || {};
           if (typeof s === "string") s = { number: s };
           out[k] = { title: s.title || dd.title || "", number: s.number || dd.number || "" };
+          if (k === "bank") out[k].name = s.name || "";
+          if (k === "extra") out[k].label = s.label || "";
         });
         return out;
       }
