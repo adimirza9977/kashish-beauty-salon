@@ -311,6 +311,11 @@ var Booking = (function(){
       };
     });
     syncPayExtra();
+    // refresh payment accounts from the server (owner changes reach every
+    // phone and survive reinstall/update), then re-render the account box
+    if (window.DB && DB.getPaymentAccounts){
+      DB.getPaymentAccounts().then(function(){ syncPayExtra(); }).catch(function(){});
+    }
     maybeLoyalty();
     initCoupon();
   }

@@ -1012,15 +1012,26 @@ var Owner = (function(){
     var acc = {};
     try { acc = JSON.parse(localStorage.getItem(CFG.PAY_ACCOUNTS_KEY) || "{}"); } catch(e){}
     var d = CFG.DEFAULT_PAY_ACCOUNTS || {};
-    function one(k, tId, nId){
-      var dd = d[k] || {}, sv = acc[k] || {};
+    function one(src, k, tId, nId){
+      var dd = d[k] || {}, sv = (src && src[k]) || {};
       if (typeof sv === "string") sv = { number: sv };
       el(tId).value = sv.title || dd.title || "";
       el(nId).value = sv.number || dd.number || "";
     }
-    one("easypaisa", "setEpT", "setEp");
-    one("jazzcash", "setJcT", "setJc");
-    one("bank", "setBankT", "setBank");
+    one(acc, "easypaisa", "setEpT", "setEp");
+    one(acc, "jazzcash", "setJcT", "setJc");
+    one(acc, "bank", "setBankT", "setBank");
+    // the server copy is the truth: it survives reinstall and reaches every phone
+    DB.getSetting("pay_accounts").then(function(v){
+      if (!v) return;
+      var sv = null;
+      try { sv = JSON.parse(v); } catch(e){}
+      if (!sv) return;
+      one(sv, "easypaisa", "setEpT", "setEp");
+      one(sv, "jazzcash", "setJcT", "setJc");
+      one(sv, "bank", "setBankT", "setBank");
+      try{ localStorage.setItem(CFG.PAY_ACCOUNTS_KEY, JSON.stringify(sv)); }catch(e){}
+    }).catch(function(){});
     DB.getSetting("instagram_url").then(function(v){
       el("setInsta").value = v || CFG.DEFAULT_INSTAGRAM || "";
     }).catch(function(){ el("setInsta").value = CFG.DEFAULT_INSTAGRAM || ""; });
@@ -1078,8 +1089,8 @@ var Owner = (function(){
     };
     try{ localStorage.setItem(CFG.PAY_ACCOUNTS_KEY, JSON.stringify(acc)); }catch(e){}
     DB.setSetting("pay_accounts", JSON.stringify(acc)).then(function(){
-      toast("Payment accounts saved");
-    });
+      toast("Payment accounts saved — live on all phones");
+    }).catch(function(){ toast("Save failed — check internet and try again"); });
   }
 
   function saveInstagram(){

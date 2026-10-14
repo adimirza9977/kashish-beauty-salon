@@ -1453,6 +1453,7 @@
   loadGallery();
   renderDeals();
   loadInstagram();
+  if (window.DB && DB.getPaymentAccounts) DB.getPaymentAccounts().catch(function(){});
   checkForUpdate();
   document.getElementById("svcSearch").addEventListener("input", renderServices);
   document.getElementById("sdetBack").addEventListener("click", function(e){

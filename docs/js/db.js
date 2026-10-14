@@ -487,6 +487,35 @@ var DB = (function(){
     setSetting: function(key, value){
       return ocall("setting_set", { key: key, value: value });
     },
+    /* Payment accounts live on the server (salon_settings.pay_accounts) so
+       owner changes reach every phone and survive reinstall/update.
+       The merged result is cached in localStorage for offline use. */
+    getPaymentAccounts: function(){
+      var d = (typeof CFG !== "undefined" && CFG.DEFAULT_PAY_ACCOUNTS) || {};
+      function build(raw){
+        var out = {};
+        ["easypaisa", "jazzcash", "bank"].forEach(function(k){
+          var dd = d[k] || {}, s = (raw && raw[k]) || {};
+          if (typeof s === "string") s = { number: s };
+          out[k] = { title: s.title || dd.title || "", number: s.number || dd.number || "" };
+        });
+        return out;
+      }
+      function cached(){
+        try { return JSON.parse(localStorage.getItem(CFG.PAY_ACCOUNTS_KEY) || "null"); }
+        catch(e){ return null; }
+      }
+      return get("salon_settings", "select=value&key=eq.pay_accounts")
+        .then(function(r){
+          var raw = null;
+          if (r && r.length && r[0].value){ try { raw = JSON.parse(r[0].value); } catch(e){ raw = null; } }
+          if (!raw) return build(cached());
+          var acc = build(raw);
+          try { localStorage.setItem(CFG.PAY_ACCOUNTS_KEY, JSON.stringify(acc)); } catch(e){}
+          return acc;
+        })
+        .catch(function(){ return build(cached()); });
+    },
 
     /* ---- forgot password / OTP reset (server-side, rate-limited) ---- */
     createResetOTP: function(phone){
