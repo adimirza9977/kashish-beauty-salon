@@ -291,10 +291,12 @@
           <div class="pay-card" data-pay="easypaisa"><span class="pay-name">Easypaisa</span><small>Transfer + TID</small></div>
           <div class="pay-card" data-pay="jazzcash"><span class="pay-name">JazzCash</span><small>Transfer + TID</small></div>
           <div class="pay-card" data-pay="bank"><span class="pay-name">&#127974; Bank</span><small>Transfer + TID</small></div>
+          <div class="pay-card" data-pay="extra" id="payCardExtra" style="display:none"><span class="pay-name" id="payExtraName">Extra</span><small>Transfer + TID</small></div>
         </div>
       </div>
       <div id="payExtra" style="display:none">
         <div class="bill-card">
+          <div class="bill-row" id="payAccBankRow" style="display:none"><span>Bank</span><strong id="payAccBankName">-</strong></div>
           <div class="bill-row"><span id="payAccLabel">Account</span><strong id="payAccNum">-</strong></div>
           <div class="bill-row" id="payAccTitleRow"><span>Title</span><strong id="payAccTitle">-</strong></div>
           <button class="btn btn-outline btn-block" id="payCopyBtn">Copy Account Number</button>
@@ -600,8 +602,13 @@
         <div class="set-row"><label>Easypaisa — account number</label><input type="text" id="setEp" placeholder="0312 7830765"></div>
         <div class="set-row"><label>JazzCash — account title (holder name)</label><input type="text" id="setJcT" placeholder="e.g. Kashish Akhtar"></div>
         <div class="set-row"><label>JazzCash — account number</label><input type="text" id="setJc" placeholder="0312 7830765"></div>
+        <div class="set-row"><label>Bank — bank name (customers ko show hoga)</label><input type="text" id="setBankName" placeholder="e.g. MEEZAN BANK" style="text-transform:uppercase"></div>
         <div class="set-row"><label>Bank — account title (holder name)</label><input type="text" id="setBankT" placeholder="e.g. Kashish Akhtar"></div>
         <div class="set-row"><label>Bank — account number / IBAN</label><input type="text" id="setBank" placeholder="PK00..."></div>
+        <div class="set-row"><label>Extra account — naam (e.g. RAAST, NAYAPAY)</label><input type="text" id="setExLabel" placeholder="e.g. RAAST" style="text-transform:uppercase"></div>
+        <div class="set-row"><label>Extra account — title (holder name)</label><input type="text" id="setExT" placeholder="e.g. Kashish Akhtar"></div>
+        <div class="set-row"><label>Extra account — number</label><input type="text" id="setEx" placeholder="03XX..."></div>
+        <p style="font-size:12px;opacity:.7;margin:2px 0 8px">Extra account khali chor dein to customers ko yeh option show nahi hoga.</p>
         <button class="btn btn-gold btn-block" id="setPaySave">Save Payment Accounts</button>
         <div class="divider"></div>
         <h3 class="sec-title">Instagram</h3>
