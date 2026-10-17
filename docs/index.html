@@ -89,7 +89,24 @@
         <div class="hero-cta">
           <a class="btn btn-gold" href="#" data-goto="booking">Book Appointment</a>
           <a class="btn btn-outline" href="#" data-goto="services">View Services</a>
+          <a class="btn btn-outline" href="#shareAppSection" onclick="document.getElementById('shareAppSection').scrollIntoView({behavior:'smooth'});return false;">&#128241; Download App</a>
         </div>
+      </div>
+    </div>
+
+    <div class="section" id="shareAppSection">
+      <span class="eyebrow">Share With Friends</span>
+      <h3 class="sec-title">Download App</h3>
+      <div class="share-card">
+        <div class="qr-wrap" id="qrBox"><div id="qrCode"></div></div>
+        <p class="qr-hint">Scan this QR code to download the Kashish app</p>
+        <p class="qr-link" id="qrLinkText"></p>
+        <div class="qr-btns">
+          <button class="btn btn-outline" id="qrCopyBtn">Copy Link</button>
+          <a class="btn btn-wa" id="qrWaBtn" href="#" target="_blank">WhatsApp</a>
+        </div>
+        <a class="btn btn-gold btn-block" id="openAppBtn" href="#" style="display:none;margin-top:12px">&#128241; Open in App</a>
+        <p class="qr-hint" id="openAppHint" style="display:none">App installed hai? Ek tap mein wahi khul jayegi.</p>
       </div>
     </div>
 
@@ -141,21 +158,6 @@
       </div>
     </div>
 
-    <div class="section" id="shareAppSection">
-      <span class="eyebrow">Share With Friends</span>
-      <h3 class="sec-title">Download App</h3>
-      <div class="share-card">
-        <div class="qr-wrap" id="qrBox"><div id="qrCode"></div></div>
-        <p class="qr-hint">Scan this QR code to download the Kashish app</p>
-        <p class="qr-link" id="qrLinkText"></p>
-        <div class="qr-btns">
-          <button class="btn btn-outline" id="qrCopyBtn">Copy Link</button>
-          <a class="btn btn-wa" id="qrWaBtn" href="#" target="_blank">WhatsApp</a>
-        </div>
-        <a class="btn btn-gold btn-block" id="openAppBtn" href="#" style="display:none;margin-top:12px">&#128241; Open in App</a>
-        <p class="qr-hint" id="openAppHint" style="display:none">App installed hai? Ek tap mein wahi khul jayegi.</p>
-      </div>
-    </div>
 
     <div class="section">
       <div class="sec-head">
