@@ -1,1 +1,7 @@
-{"version_code": 34, "version_name": "6.7", "apk_url": "https://muse.ai/files/1406875642504377/1131379826518697/w4qg9gdw06me4grmt5jkvs6q/KashishBeautySalon-v6.7.apk", "force_reinstall": true, "message": "Naya version v6.7 aa gaya hai! Update ke liye pehle purani app UNINSTALL karein, phir nayi app install karein (sirf is dafa - agli updates seedhi hongi)."}
+{
+  "version_code": 34,
+  "version_name": "6.7",
+  "apk_url": "https://cdn.jsdelivr.net/gh/adimirza9977/kashish-beauty-salon@main/KashishBeautySalon.apk",
+  "force_reinstall": true,
+  "message": "Naya version v6.7 aa gaya hai! Update ke liye pehle purani app UNINSTALL karein, phir nayi app install karein (sirf is dafa - agli updates seedhi hongi)."
+}
