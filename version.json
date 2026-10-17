@@ -1,7 +1,7 @@
 {
-  "version_code": 34,
-  "version_name": "6.7",
+  "version_code": 35,
+  "version_name": "6.8",
   "apk_url": "https://cdn.jsdelivr.net/gh/adimirza9977/kashish-beauty-salon@main/KashishBeautySalon.apk",
-  "force_reinstall": true,
-  "message": "Naya version v6.7 aa gaya hai! Update ke liye pehle purani app UNINSTALL karein, phir nayi app install karein (sirf is dafa - agli updates seedhi hongi)."
+  "force_reinstall": false,
+  "message": "Naya version v6.8 aa gaya hai! (Crash fix - ab app band nahi hogi)"
 }
